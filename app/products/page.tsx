@@ -19,8 +19,8 @@ export default function ProductsPage() {
         title="Our Products"
         accentWord="Products"
         subtitle="Eight product categories. One reliable supplier. From a single replacement part to bulk fleet supply — we have you covered."
-        imageSrc="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=2000&q=85&auto=format&fit=crop"
-        imageAlt="Auto spare parts and components"
+        imageSrc="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=2000&q=85&auto=format&fit=crop"
+        imageAlt="Automotive spare parts and components"
         breadcrumbs={[{ label: "Products" }]}
       />
       <ProductsGrid />

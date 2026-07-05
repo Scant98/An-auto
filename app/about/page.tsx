@@ -21,8 +21,8 @@ export default function AboutPage() {
         title="About Us"
         accentWord="Us"
         subtitle="Over two decades of supplying quality spare parts and general supplies to Tanzania's businesses — built on transparency, equality, and genuine care for our clients."
-        imageSrc="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=2000&q=85&auto=format&fit=crop"
-        imageAlt="Professional business team"
+        imageSrc="/images/marine-machinery.jpg"
+        imageAlt="Industrial marine machinery"
         breadcrumbs={[{ label: "About" }]}
       />
       <StorySection />

@@ -2,82 +2,106 @@
 
 import { useRef, useEffect, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { TrendingUp, Users, Package, Clock } from "lucide-react";
-import { staggerContainer, fadeInUp } from "@/lib/animations";
 
-function useCounter(end: number, duration = 1800, started = false) {
+const ease = [0.22, 1, 0.36, 1] as const;
+
+function useCounter(end: number, duration = 2000, started = false) {
   const [count, setCount] = useState(0);
   useEffect(() => {
     if (!started) return;
     let raf: number;
-    const startTime = performance.now();
-    const step = (now: number) => {
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * end));
-      if (progress < 1) raf = requestAnimationFrame(step);
+    const t0 = performance.now();
+    const run = (now: number) => {
+      const p = Math.min((now - t0) / duration, 1);
+      const e = 1 - Math.pow(1 - p, 4);
+      setCount(Math.floor(e * end));
+      if (p < 1) raf = requestAnimationFrame(run);
       else setCount(end);
     };
-    raf = requestAnimationFrame(step);
+    raf = requestAnimationFrame(run);
     return () => cancelAnimationFrame(raf);
   }, [started, end, duration]);
   return count;
 }
 
 const stats = [
-  { icon: TrendingUp, value: 20, suffix: "+", label: "Years of Experience", desc: "Serving Tanzania since 2004" },
-  { icon: Package, value: 5000, suffix: "+", label: "Parts Supplied", desc: "Genuine & aftermarket parts" },
-  { icon: Users, value: 200, suffix: "+", label: "Business Clients", desc: "Garages, contractors & fleets" },
-  { icon: Clock, value: 24, suffix: "h", label: "Response Time", desc: "Fast enquiry turnaround" },
+  { value: 20,   suffix: "+", label: "Years in Business", sub: "Since 2004" },
+  { value: 5000, suffix: "+", label: "Parts Supplied",    sub: "OEM & aftermarket" },
+  { value: 200,  suffix: "+", label: "Business Clients",  sub: "Across Tanzania" },
+  { value: 24,   suffix: "h", label: "Response Time",     sub: "Fast turnaround" },
 ];
 
-function StatCard({ stat, started }: { stat: typeof stats[0]; started: boolean }) {
-  const count = useCounter(stat.value, 1800, started);
-  const Icon = stat.icon;
+function Stat({ s, started }: { s: typeof stats[0]; started: boolean }) {
+  const n = useCounter(s.value, 2000, started);
   return (
     <motion.div
-      variants={fadeInUp}
-      className="group relative flex flex-col items-center text-center p-8 rounded-2xl glass-card glass-card-hover"
+      initial={{ opacity: 0, y: 32 }}
+      animate={started ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.7, ease }}
+      className="flex flex-col items-center text-center relative"
     >
-      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-[#1E6FDB]/15 border border-[#1E6FDB]/20 mb-5 group-hover:bg-[#1E6FDB]/25 group-hover:border-[#1E6FDB]/40 transition-all duration-300">
-        <Icon className="w-5 h-5 text-[#1E6FDB]" aria-hidden="true" />
-      </div>
-      <div className="text-4xl font-black text-white mb-2 tabular-nums">
-        {count.toLocaleString()}{stat.suffix}
-      </div>
-      <div className="text-sm font-semibold text-white/80 mb-1">{stat.label}</div>
-      <div className="text-xs text-white/40 leading-relaxed">{stat.desc}</div>
+      <span className="text-[clamp(3rem,7vw,5.5rem)] font-black text-white leading-none tabular-nums">
+        {n.toLocaleString()}
+        <span className="text-[#0077FF]">{s.suffix}</span>
+      </span>
+      <span className="mt-3 text-sm font-bold text-white/75 uppercase tracking-widest">{s.label}</span>
+      <span className="mt-1 text-xs text-white/35">{s.sub}</span>
     </motion.div>
   );
 }
 
 export default function StatsSection() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
       ref={ref}
       aria-label="Company statistics"
-      className="relative py-20 md:py-28 bg-[#0A1628] overflow-hidden"
+      className="relative py-24 bg-[#060D1C] overflow-hidden africa-texture"
     >
-      {/* Background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-[#1E6FDB]/6 rounded-full blur-[100px]" />
+      {/* Glow */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[800px] h-[300px] bg-[#0077FF]/7 rounded-full blur-[120px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Top / bottom rules */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#0077FF]/30 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#0077FF]/20 to-transparent" />
+
+      <div className="relative wrap">
+        {/* Eyebrow */}
         <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6"
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease }}
+          className="text-center mb-16"
         >
-          {stats.map((stat) => (
-            <StatCard key={stat.label} stat={stat} started={isInView} />
-          ))}
+          <span className="inline-flex items-center gap-2 text-[#0077FF] text-xs font-bold uppercase tracking-[0.2em]">
+            <span className="block w-6 h-px bg-[#0077FF]" />
+            By the Numbers
+            <span className="block w-6 h-px bg-[#0077FF]" />
+          </span>
         </motion.div>
+
+        {/* Stats grid with vertical dividers */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/[0.06] rounded-2xl overflow-hidden">
+          {stats.map((s) => (
+            <div key={s.label} className="bg-[#060D1C] px-8 py-10 relative">
+              <Stat s={s} started={inView} />
+            </div>
+          ))}
+        </div>
+
+        {/* Tanzania pride line */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.6, ease }}
+          className="mt-10 text-center text-white/25 text-sm"
+        >
+          Proudly serving Tanzania&apos;s businesses since 2004 · Dar es Salaam, East Africa
+        </motion.p>
       </div>
     </section>
   );

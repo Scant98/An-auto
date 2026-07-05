@@ -20,8 +20,8 @@ export default function ServicesPage() {
         title="Our Services"
         accentWord="Services"
         subtitle="From parts sourcing to doorstep delivery — we handle everything so you can focus on keeping your business running."
-        imageSrc="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=2000&q=85&auto=format&fit=crop"
-        imageAlt="Industrial workers in a warehouse"
+        imageSrc="https://images.unsplash.com/photo-1553413077-190dd305871c?w=2000&q=85&auto=format&fit=crop"
+        imageAlt="Organised warehouse and logistics centre"
         breadcrumbs={[{ label: "Services" }]}
       />
       <ServicesGrid />

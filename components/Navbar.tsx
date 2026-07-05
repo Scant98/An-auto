@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, ChevronRight } from "lucide-react";
@@ -49,7 +50,7 @@ export default function Navbar() {
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
           scrolled
-            ? "bg-[#0A1628]/96 backdrop-blur-md border-b border-white/[0.08] shadow-2xl shadow-black/30"
+            ? "bg-[#060E1D]/96 backdrop-blur-md border-b border-white/[0.08] shadow-2xl shadow-black/30"
             : "bg-transparent"
         )}
       >
@@ -58,17 +59,19 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E6FDB] rounded-lg"
+              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0077FF] rounded-lg"
               aria-label="A.N Auto Trading — Home"
             >
-              <div className="relative flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-[#1E6FDB] to-[#1a5fbf] shadow-lg shadow-[#1E6FDB]/30 group-hover:shadow-[#1E6FDB]/50 transition-shadow duration-300">
-                <span className="text-white font-black text-base tracking-tight leading-none">
-                  AN
-                </span>
-              </div>
+              <Image
+                src="/logo1.png"
+                alt="A.N Auto Trading Logo"
+                width={48}
+                height={48}
+                className="object-contain flex-shrink-0"
+              />
               <div className="hidden sm:block">
-                <p className="text-white font-bold text-sm leading-tight group-hover:text-[#60a5fa] transition-colors duration-200">
-                  A.N Auto Trading
+                <p className="text-white font-bold text-sm leading-tight group-hover:text-[#60AEFF] transition-colors duration-200">
+                  A.N Auto Trading Limited
                 </p>
                 <p className="text-white/40 text-xs leading-tight">
                   & General Supplies
@@ -85,7 +88,7 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={cn(
-                      "relative px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E6FDB]",
+                      "relative px-4 py-2 text-sm font-medium rounded-md transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0077FF]",
                       isActive
                         ? "text-white"
                         : "text-white/65 hover:text-white hover:bg-white/[0.07]"
@@ -95,7 +98,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.div
                         layoutId="nav-active"
-                        className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-[#1E6FDB] to-[#60a5fa] rounded-full"
+                        className="absolute bottom-0 left-3 right-3 h-[2px] bg-gradient-to-r from-[#0077FF] to-[#60AEFF] rounded-full"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.5 }}
                       />
                     )}
@@ -107,12 +110,12 @@ export default function Navbar() {
             {/* Right side */}
             <div className="flex items-center gap-3">
               <a
-                href="tel:+255713503780"
-                className="hidden lg:flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E6FDB] rounded-md px-2 py-1"
-                aria-label="Call +255 713 503 780"
+                href="tel:+255685604910"
+                className="hidden lg:flex items-center gap-2 text-white/60 hover:text-white text-sm transition-colors duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0077FF] rounded-md px-2 py-1"
+                aria-label="Call +255 685 604 910"
               >
-                <Phone className="w-3.5 h-3.5 text-[#1E6FDB]" aria-hidden="true" />
-                <span>+255 713 503 780</span>
+                <Phone className="w-3.5 h-3.5 text-[#0077FF]" aria-hidden="true" />
+                <span>+255 685 604 910</span>
               </a>
               <Link href="/contact">
                 <Button variant="default" size="sm" className="hidden md:inline-flex">
@@ -121,7 +124,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="md:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1E6FDB]"
+                className="md:hidden p-2 text-white rounded-md hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#0077FF]"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
                 aria-controls="mobile-menu"
@@ -161,14 +164,18 @@ export default function Navbar() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#060E1A] border-l border-white/[0.08] shadow-2xl md:hidden flex flex-col"
+              className="fixed top-0 right-0 bottom-0 z-50 w-72 bg-[#08111F] border-l border-white/[0.08] shadow-2xl md:hidden flex flex-col"
             >
               <div className="flex items-center justify-between px-6 h-16 border-b border-white/[0.08]">
                 <Link href="/" className="flex items-center gap-2" onClick={() => setMobileOpen(false)}>
-                  <div className="w-8 h-8 rounded-lg bg-[#1E6FDB] flex items-center justify-center">
-                    <span className="text-white font-black text-sm">AN</span>
-                  </div>
-                  <span className="text-white font-bold text-sm">A.N Auto Trading</span>
+                  <Image
+                    src="/logo1.png"
+                    alt="A.N Auto Trading Logo"
+                    width={36}
+                    height={36}
+                    className="object-contain flex-shrink-0"
+                  />
+                  <span className="text-white font-bold text-sm">A.N Auto Trading Limited</span>
                 </Link>
                 <button
                   onClick={() => setMobileOpen(false)}
@@ -194,12 +201,12 @@ export default function Navbar() {
                         className={cn(
                           "flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
                           isActive
-                            ? "bg-[#1E6FDB]/15 text-white border border-[#1E6FDB]/30"
+                            ? "bg-[#0077FF]/15 text-white border border-[#0077FF]/30"
                             : "text-white/70 hover:text-white hover:bg-white/[0.07]"
                         )}
                       >
                         {link.label}
-                        <ChevronRight className={cn("w-4 h-4 transition-colors", isActive ? "text-[#1E6FDB]" : "text-white/30")} />
+                        <ChevronRight className={cn("w-4 h-4 transition-colors", isActive ? "text-[#0077FF]" : "text-white/30")} />
                       </Link>
                     </motion.div>
                   );
@@ -208,11 +215,11 @@ export default function Navbar() {
 
               <div className="px-4 pb-8 flex flex-col gap-3 border-t border-white/[0.08] pt-4">
                 <a
-                  href="tel:+255713503780"
+                  href="tel:+255685604910"
                   className="flex items-center gap-3 px-4 py-3 text-white/70 hover:text-white text-sm transition-colors rounded-lg hover:bg-white/[0.07]"
                 >
-                  <Phone className="w-4 h-4 text-[#1E6FDB]" />
-                  +255 713 503 780
+                  <Phone className="w-4 h-4 text-[#0077FF]" />
+                  +255 685 604 910
                 </a>
                 <Link href="/contact" onClick={() => setMobileOpen(false)}>
                   <Button variant="default" className="w-full">

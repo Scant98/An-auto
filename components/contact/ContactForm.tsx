@@ -16,6 +16,8 @@ const categories = [
   "General Enquiry",
 ];
 
+const inputCls = "w-full px-4 py-3 rounded-xl border border-[#C8D8F8] bg-white text-[#060D1C] placeholder-[#060D1C]/30 text-sm focus:outline-none focus:ring-2 focus:ring-[#0077FF]/40 focus:border-[#0077FF] transition-all";
+
 type Status = "idle" | "loading" | "success" | "error";
 
 export default function ContactForm() {
@@ -40,16 +42,16 @@ export default function ContactForm() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center justify-center text-center py-16 px-8"
           >
-            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#1E6FDB]/15 border border-[#1E6FDB]/30 mb-5">
-              <CheckCircle className="w-8 h-8 text-[#1E6FDB]" aria-hidden="true" />
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-[#0077FF]/12 border border-[#0077FF]/30 mb-5">
+              <CheckCircle className="w-8 h-8 text-[#0077FF]" />
             </div>
-            <h3 className="text-xl font-bold text-[#0A1628] mb-2">Message Sent!</h3>
-            <p className="text-[#0A1628]/60 text-sm max-w-xs">
+            <h3 className="text-xl font-bold text-[#060D1C] mb-2">Message Sent!</h3>
+            <p className="text-[#060D1C]/55 text-sm max-w-xs">
               Thank you for reaching out. We&apos;ll get back to you within 24 hours.
             </p>
             <button
               onClick={() => setStatus("idle")}
-              className="mt-6 text-sm text-[#1E6FDB] hover:underline font-medium"
+              className="mt-6 text-sm text-[#0077FF] hover:underline font-medium"
             >
               Send another message
             </button>
@@ -63,62 +65,30 @@ export default function ContactForm() {
             onSubmit={handleSubmit}
             noValidate
             className="flex flex-col gap-5"
-            aria-label="Contact form"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="name" className="text-sm font-medium text-[#0A1628]/80">
+                <label htmlFor="name" className="text-sm font-semibold text-[#060D1C]/70">
                   Full Name <span className="text-red-500">*</span>
                 </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  autoComplete="name"
-                  placeholder="e.g. Ahmed Hassan"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-[#0A1628] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6FDB]/40 focus:border-[#1E6FDB] transition-all"
-                />
+                <input id="name" name="name" type="text" required autoComplete="name" placeholder="e.g. Ahmed Hassan" className={inputCls} />
               </div>
               <div className="flex flex-col gap-1.5">
-                <label htmlFor="phone" className="text-sm font-medium text-[#0A1628]/80">
+                <label htmlFor="phone" className="text-sm font-semibold text-[#060D1C]/70">
                   Phone Number <span className="text-red-500">*</span>
                 </label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  autoComplete="tel"
-                  placeholder="+255 7XX XXX XXX"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-[#0A1628] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6FDB]/40 focus:border-[#1E6FDB] transition-all"
-                />
+                <input id="phone" name="phone" type="tel" required autoComplete="tel" placeholder="+255 7XX XXX XXX" className={inputCls} />
               </div>
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="email" className="text-sm font-medium text-[#0A1628]/80">
-                Email Address
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                placeholder="your@email.com"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-[#0A1628] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6FDB]/40 focus:border-[#1E6FDB] transition-all"
-              />
+              <label htmlFor="email" className="text-sm font-semibold text-[#060D1C]/70">Email Address</label>
+              <input id="email" name="email" type="email" autoComplete="email" placeholder="your@email.com" className={inputCls} />
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="category" className="text-sm font-medium text-[#0A1628]/80">
-                Enquiry Type
-              </label>
-              <select
-                id="category"
-                name="category"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-[#0A1628] text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6FDB]/40 focus:border-[#1E6FDB] transition-all appearance-none cursor-pointer"
-              >
+              <label htmlFor="category" className="text-sm font-semibold text-[#060D1C]/70">Enquiry Type</label>
+              <select id="category" name="category" className={inputCls + " appearance-none cursor-pointer"}>
                 <option value="">Select a category...</option>
                 {categories.map((cat) => (
                   <option key={cat} value={cat}>{cat}</option>
@@ -127,7 +97,7 @@ export default function ContactForm() {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label htmlFor="message" className="text-sm font-medium text-[#0A1628]/80">
+              <label htmlFor="message" className="text-sm font-semibold text-[#060D1C]/70">
                 Your Message <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -136,13 +106,13 @@ export default function ContactForm() {
                 required
                 rows={5}
                 placeholder="Describe what you need — part numbers, vehicle make/model, quantities, or any other details..."
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-[#0A1628] placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E6FDB]/40 focus:border-[#1E6FDB] transition-all resize-none"
+                className={inputCls + " resize-none"}
               />
             </div>
 
             {status === "error" && (
               <div className="flex items-center gap-2 text-red-600 text-sm bg-red-50 border border-red-200 px-4 py-3 rounded-xl">
-                <AlertCircle className="w-4 h-4 flex-shrink-0" aria-hidden="true" />
+                <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 Something went wrong. Please try again or call us directly.
               </div>
             )}
@@ -152,25 +122,19 @@ export default function ContactForm() {
               variant="default"
               size="lg"
               disabled={status === "loading"}
-              className={cn("w-full group mt-1", status === "loading" && "opacity-80")}
+              className={cn("w-full group mt-1 shadow-lg shadow-[#0077FF]/20", status === "loading" && "opacity-80")}
             >
               {status === "loading" ? (
-                <>
-                  <Loader2 className="mr-2 w-4 h-4 animate-spin" aria-hidden="true" />
-                  Sending...
-                </>
+                <><Loader2 className="mr-2 w-4 h-4 animate-spin" />Sending...</>
               ) : (
-                <>
-                  Send Message
-                  <Send className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" aria-hidden="true" />
-                </>
+                <>Send Message<Send className="ml-2 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" /></>
               )}
             </Button>
 
-            <p className="text-xs text-center text-[#0A1628]/35">
+            <p className="text-xs text-center text-[#060D1C]/35">
               We reply within 24 hours. For urgent enquiries, call{" "}
-              <a href="tel:+255713503780" className="text-[#1E6FDB] hover:underline font-medium">
-                +255 713 503 780
+              <a href="tel:+255685604910" className="text-[#0077FF] hover:underline font-medium">
+                +255 685 604 910
               </a>
             </p>
           </motion.form>
