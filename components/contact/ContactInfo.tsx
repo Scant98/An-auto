@@ -52,16 +52,16 @@ export default function ContactInfo() {
         </a>
 
         <a
-          href="mailto:info@anauto.co.tz"
+          href="mailto:info@anautotrading.co.tz"
           className="group flex items-center gap-4 p-5 rounded-2xl glass-dark glass-dark-hover"
-          aria-label="Email info@anauto.co.tz"
+          aria-label="Email info@anautotrading.co.tz"
         >
           <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-[#0077FF]/12 border border-[#0077FF]/20 flex-shrink-0 group-hover:bg-[#0077FF] group-hover:border-[#0077FF] transition-all duration-300">
             <Mail className="w-4 h-4 text-[#0077FF] group-hover:text-white transition-colors duration-300" />
           </div>
           <div>
             <p className="text-xs font-bold text-white/35 uppercase tracking-widest mb-0.5">Email</p>
-            <p className="text-sm text-white font-medium">info@anauto.co.tz</p>
+            <p className="text-sm text-white font-medium">info@anautotrading.co.tz</p>
           </div>
         </a>
 

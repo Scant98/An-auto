@@ -138,11 +138,11 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:info@anauto.co.tz"
+                  href="mailto:info@anautotrading.co.tz"
                   className="flex items-center gap-3 text-white/50 hover:text-white transition-colors text-sm group"
                 >
                   <Mail className="w-4 h-4 text-[#0077FF] flex-shrink-0" />
-                  info@anauto.co.tz
+                  info@anautotrading.co.tz
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-60 transition-opacity" />
                 </a>
               </li>
