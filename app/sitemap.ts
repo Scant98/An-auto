@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 const baseUrl = "https://www.anautotrading.co.tz";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/about", "/products", "/services", "/contact"];
+  const routes = ["", "/about/", "/products/", "/services/", "/contact/"];
 
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
