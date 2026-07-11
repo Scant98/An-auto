@@ -46,9 +46,9 @@ export const metadata: Metadata = {
     siteName: "A.N Auto Trading & General Supplies",
     images: [
       {
-        url: "/logo1.png",
-        width: 831,
-        height: 706,
+        url: "/logo-full.png",
+        width: 1239,
+        height: 864,
         alt: "A.N Auto Trading & General Supplies logo",
       },
     ],
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "A.N Auto Trading & General Supplies",
     description:
       "Import-grade spare parts delivered across Tanzania. Motor vehicles, forklifts, trucks & more.",
-    images: ["/logo1.png"],
+    images: ["/logo-full.png"],
   },
 };
 
